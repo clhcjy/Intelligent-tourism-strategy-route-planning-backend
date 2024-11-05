@@ -4,8 +4,14 @@ import com.coding24.mybatisdemo.entity.User;
 import com.coding24.mybatisdemo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.HtmlUtils;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -14,11 +20,16 @@ public class UserRestController {
     private UserService userService;
 
     @GetMapping("/findByIdRest/{id}")
-    public User findById(@PathVariable("id") Integer id, Model model) {
+    public ResponseEntity<Map<String, String>>findById(@PathVariable("id") Integer id, Model model) {
         log.info("正在根据ID查找用户: {}", id);
         User user = userService.findById(id);
         log.info("找到的用户: {}", user);
-        return user;
+        // 防止XSS攻击，对返回的字符串进行转义
+        Map<String, String> result = new HashMap<>();
+        result.put("id", HtmlUtils.htmlEscape(String.valueOf(user.getId())));
+        result.put("username", HtmlUtils.htmlEscape(user.getUsername()));
+        result.put("avatarUrl", HtmlUtils.htmlEscape(user.getAvatarUrl()));
+        return ResponseEntity.ok(result);
     }
 
     @PostMapping("/login")
