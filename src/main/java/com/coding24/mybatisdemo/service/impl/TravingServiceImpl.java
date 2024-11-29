@@ -6,6 +6,8 @@ import com.coding24.mybatisdemo.service.TravingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TravingServiceImpl implements TravingService {
     @Autowired
@@ -50,5 +52,15 @@ public class TravingServiceImpl implements TravingService {
     @Override
     public void updateTraving(Traving traving) {
         travingMapper.updateTraving(traving);
+    }
+
+    /**
+     * @param uid
+     * @param pid
+     * @return
+     */
+    @Override
+    public List<Traving> selectTravingByUidAndPid(int uid, int pid) {
+        return travingMapper.selectTravingByUidAndPid(uid,pid);
     }
 }

@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/traving")
 public class TravingController {
@@ -59,5 +61,18 @@ public class TravingController {
         logger.info("正在更新旅行记录: {}", traving);
         travingService.updateTraving(traving);
         logger.info("旅行记录更新成功: {}", traving);
+    }
+
+    @PostMapping("/selectUidPid")
+    public List<Traving> selectTravingByUidAndPid(@RequestParam int uid, @RequestParam int pid) {
+        logger.info("根据UID和PID查询旅行记录: UID={}, PID={}", uid, pid);
+        List<Traving> travings = travingService.selectTravingByUidAndPid(uid, pid);
+        if (!travings.isEmpty()) {
+            logger.info("找到旅行记录，UID: {}, PID: {}, 内容: {}", uid, pid, travings);
+            return travings;
+        }else{
+            logger.warn("未找到旅行记录，UID: {}, PID: {}", uid, pid);
+            return null;
+        }
     }
 }
