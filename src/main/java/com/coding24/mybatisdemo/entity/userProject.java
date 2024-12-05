@@ -11,4 +11,5 @@ public class userProject {
     private int pid;
     private String projectName;
     private int uid;
+    private String picture;
 }

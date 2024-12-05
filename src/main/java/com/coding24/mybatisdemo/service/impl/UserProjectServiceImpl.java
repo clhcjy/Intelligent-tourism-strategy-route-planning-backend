@@ -54,4 +54,13 @@ public class UserProjectServiceImpl implements UserProjectService {
     public List<userProject> searchAll() {
         return userProjectMapper.findAll();
     }
+
+    /**
+     * @param uid
+     * @return
+     */
+    @Override
+    public List<userProject> searchByUid(int uid) {
+        return userProjectMapper.findByUid(uid);
+    }
 }

@@ -4,16 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Traving {
-    private int tid;
-    private String city;
-    private int uid;
-    private Date startTime;
-    private Date endTime;
+public class Points {
+    private int position_id;
+    private String title;
+    private String lng;
+    private String lat;
     private int pid;
 }

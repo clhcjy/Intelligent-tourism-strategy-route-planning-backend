@@ -5,10 +5,7 @@ import com.coding24.mybatisdemo.service.UserProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,10 +25,11 @@ public class UserProjectController {
     }
 
     @PostMapping("/insert")
-    public void insertUserProject(userProject userProject) {
+    public userProject insertUserProject(@RequestBody userProject userProject) {
         logger.info("插入项目，项目信息: {}", userProject);
         userProjectService.insertUserProject(userProject);
         logger.info("项目插入成功，项目信息: {}", userProject);
+        return userProject;
     }
 
     @PostMapping("/select")
@@ -43,7 +41,7 @@ public class UserProjectController {
     }
 
     @PostMapping("/update")
-    public void updateUserProject(userProject userProject) {
+    public void updateUserProject(@RequestBody userProject userProject) {
         logger.info("更新项目，项目信息: {}", userProject);
         userProjectService.updateUserProject(userProject);
         logger.info("项目更新成功，项目信息: {}", userProject);
@@ -54,6 +52,14 @@ public class UserProjectController {
         logger.info("查询所有项目");
         List<userProject> result = userProjectService.searchAll();
         logger.info("查询所有项目成功，结果: {}", result);
+        return result;
+    }
+
+    @PostMapping("/searchByUid")
+    public List<userProject> searchByUid(@RequestParam int uid) {
+        logger.info("查询用户项目，用户ID: {}", uid);
+        List<userProject> result = userProjectService.searchByUid(uid);
+        logger.info("查询用户项目成功，用户ID: {}, 结果: {}", uid, result);
         return result;
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface TravingMapper {
-    @Insert("insert into traving(city,uid,startTime,endTime)" + "values(#{city},#{uid},#{startTime},#{endTime})")
+    @Insert("insert into traving(city,uid,startTime,endTime,pid)" + "values(#{city},#{uid},#{startTime},#{endTime},#{pid})")
     public void insertTraving(Traving traving);
 
     @Delete("delete from traving where tid=#{tid}")

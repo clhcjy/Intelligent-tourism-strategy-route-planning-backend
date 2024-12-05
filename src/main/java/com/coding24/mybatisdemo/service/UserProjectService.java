@@ -10,4 +10,5 @@ public interface UserProjectService {
     public String selectUserProject(int pid);
     public void updateUserProject(userProject userProject);
     public List<userProject> searchAll();
+    public List<userProject> searchByUid(int uid);
 }
