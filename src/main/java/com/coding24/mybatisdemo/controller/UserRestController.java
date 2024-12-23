@@ -5,22 +5,22 @@ import com.coding24.mybatisdemo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @RestController
 public class UserRestController {
+
     @Autowired
     private UserService userService;
 
     @GetMapping("/findByIdRest/{id}")
-    public ResponseEntity<Map<String, String>>findById(@PathVariable("id") Integer id, Model model) {
+    public ResponseEntity<Map<String, String>> findById(
+          @PathVariable("id") Integer id) {
         log.info("正在根据ID查找用户: {}", id);
         User user = userService.findById(id);
         log.info("找到的用户: {}", user);
@@ -46,11 +46,12 @@ public class UserRestController {
         return authenticatedUser;
     }
 
-    @PostMapping("register")
-    public String register(@RequestBody User user) {
+    @PostMapping("/register")
+    public String register( @RequestBody User user) {
         log.info("正在注册新用户: {}", user);
         userService.save(user);
         log.info("用户注册成功: {}", user);
         return "success";
     }
 }
+   

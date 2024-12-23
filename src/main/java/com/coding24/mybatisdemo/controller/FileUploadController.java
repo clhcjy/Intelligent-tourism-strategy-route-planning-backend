@@ -16,7 +16,8 @@ public class FileUploadController {
     private static final String UPLOAD_DIR = "uploads/";
 
     @PostMapping("/User")
-    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> uploadFile(
+      @RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
             return ResponseEntity.badRequest().body("请选择一个文件上传");
         }
@@ -29,7 +30,7 @@ public class FileUploadController {
 
             // 检查文件大小
             if (file.getSize() > 2 * 1024 * 1024) {
-                return ResponseEntity.badRequest().body("文件超过大小 》 2MB.");
+                return ResponseEntity.badRequest().body("文件超过大小 2MB.");
             }
 
             // 保存文件
@@ -37,12 +38,11 @@ public class FileUploadController {
             Files.createDirectories(filePath.getParent());
             Files.write(filePath, file.getBytes());
             // 生成文件访问链接
-            String fileUrl = "http://localhost:8080/files/" + file.getOriginalFilename();
-            return ResponseEntity.ok("文件上传成功:+" + fileUrl);
+            String fileUrl = "http://localhost:8081/files/" + file.getOriginalFilename();
+            return ResponseEntity.ok("文件上传成功: " + fileUrl);
         } catch (IOException e) {
             e.printStackTrace();
-            return ResponseEntity.internalServerError().body("文件上传失败:+" + e.getMessage());
+            return ResponseEntity.internalServerError().body("文件上传失败: " + e.getMessage());
         }
     }
 }
-

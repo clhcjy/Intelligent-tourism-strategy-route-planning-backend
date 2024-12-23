@@ -12,4 +12,5 @@ public class userProject {
     private String projectName;
     private int uid;
     private String picture;
+    private String category;
 }

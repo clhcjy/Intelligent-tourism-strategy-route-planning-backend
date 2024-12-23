@@ -13,7 +13,7 @@ public interface UserProjectMapper {
     @Delete("delete from user_project where pid = #{pid}")
     public void deleteUserProject(int pid);
 
-    @Update("update user_project set uid = #{uid},projectName = #{projectName},picture = #{picture} where pid = #{pid}")
+    @Update("update user_project set uid = #{uid},projectName = #{projectName},picture = #{picture},category = #{category} where pid = #{pid}")
     public void updateUserProject(userProject userProject);
 
     @Insert("insert into user_project(uid,projectName)" + "values(#{uid},#{projectName})")

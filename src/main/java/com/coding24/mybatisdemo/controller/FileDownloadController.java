@@ -22,7 +22,8 @@ public class FileDownloadController {
     private static final String UPLOAD_DIR = "uploads/";
 
     @GetMapping("/{fileName}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) {
+    public ResponseEntity<Resource> downloadFile(
+            @PathVariable String fileName) {
         try {
             Path filePath = Paths.get(UPLOAD_DIR + fileName);
             Resource resource = new UrlResource(filePath.toUri());
@@ -41,4 +42,3 @@ public class FileDownloadController {
         }
     }
 }
-

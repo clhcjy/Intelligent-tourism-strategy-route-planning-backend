@@ -19,21 +19,24 @@ public class TravingController {
     private TravingService travingService;
 
     @PostMapping("/delete")
-    public void deleteTraving(@RequestParam int tid) {
+    public void deleteTraving(
+@RequestParam int tid) {
         logger.info("正在删除旅行记录，ID: {}", tid);
         travingService.deleteTraving(tid);
         logger.info("旅行记录删除成功，ID: {}", tid);
     }
 
     @PostMapping("/insert")
-    public void insertTraving(@RequestBody Traving traving) {
+    public void insertTraving(
+        @RequestBody Traving traving) {
         logger.info("正在插入旅行记录: {}", traving);
         travingService.insertTraving(traving);
         logger.info("旅行记录插入成功: {}", traving);
     }
 
     @GetMapping("/selectById")
-    public Traving selectTraving(@RequestParam int tid) {
+    public Traving selectTraving(
+         @RequestParam int tid) {
         logger.info("根据ID查询旅行记录: {}", tid);
         Traving traving = travingService.selectTraving(tid);
         if (traving != null) {
@@ -45,7 +48,8 @@ public class TravingController {
     }
 
     @GetMapping("/selectByUid")
-    public Traving selectTravingByUid(@RequestParam int uid) {
+    public Traving selectTravingByUid(
+   @RequestParam int uid) {
         logger.info("根据UID查询旅行记录: {}", uid);
         Traving traving = travingService.selectTravingByUid(uid);
         if (traving != null) {
@@ -57,20 +61,23 @@ public class TravingController {
     }
 
     @PostMapping("/update")
-    public void updateTraving(@RequestBody Traving traving) {
+    public void updateTraving(
+    @RequestBody Traving traving) {
         logger.info("正在更新旅行记录: {}", traving);
         travingService.updateTraving(traving);
         logger.info("旅行记录更新成功: {}", traving);
     }
 
     @PostMapping("/selectUidPid")
-    public List<Traving> selectTravingByUidAndPid(@RequestParam int uid, @RequestParam int pid) {
+    public List<Traving> selectTravingByUidAndPid(
+            @RequestParam int uid,
+          @RequestParam int pid) {
         logger.info("根据UID和PID查询旅行记录: UID={}, PID={}", uid, pid);
         List<Traving> travings = travingService.selectTravingByUidAndPid(uid, pid);
         if (!travings.isEmpty()) {
             logger.info("找到旅行记录，UID: {}, PID: {}, 内容: {}", uid, pid, travings);
             return travings;
-        }else{
+        } else {
             logger.warn("未找到旅行记录，UID: {}, PID: {}", uid, pid);
             return null;
         }

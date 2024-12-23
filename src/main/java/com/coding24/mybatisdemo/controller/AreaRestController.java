@@ -27,7 +27,8 @@ public class AreaRestController {
     }
 
     @GetMapping("/{aid}")
-    public Area findById(@PathVariable int aid) {
+
+    public Area findById( @PathVariable int aid) {
         LocalDateTime now = LocalDateTime.now();
         log.info("[{}] 根据ID查询区域: {}", now.format(formatter), aid);
         Area result = areaService.findById(aid);
@@ -45,7 +46,7 @@ public class AreaRestController {
     }
 
     @GetMapping("/city/{city}")
-    public Area findByCity(@PathVariable String city) {
+    public Area findByCity( @PathVariable String city) {
         LocalDateTime now = LocalDateTime.now();
         log.info("[{}] 根据城市查询区域: {}", now.format(formatter), city);
         Area result = areaService.findByCity(city);
@@ -72,7 +73,7 @@ public class AreaRestController {
     }
 
     @GetMapping("/street/{street}")
-    public Area findByStreet(@PathVariable String street) {
+    public Area findByStreet( @PathVariable String street) {
         LocalDateTime now = LocalDateTime.now();
         log.info("[{}] 根据街道查询区域: {}", now.format(formatter), street);
         Area result = areaService.findByStreet(street);
@@ -81,7 +82,7 @@ public class AreaRestController {
     }
 
     @PostMapping("/")
-    public void insert(@RequestBody Area area) {
+    public void insert( @RequestBody Area area) {
         LocalDateTime now = LocalDateTime.now();
         log.info("[{}] 插入区域: {}", now.format(formatter), area);
         areaService.save(area);

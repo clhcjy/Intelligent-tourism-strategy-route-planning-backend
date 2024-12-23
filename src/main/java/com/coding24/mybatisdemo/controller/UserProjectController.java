@@ -18,14 +18,16 @@ public class UserProjectController {
     private UserProjectService userProjectService;
 
     @PostMapping("/delete")
-    public void deleteUserProject(int pid) {
+    public void deleteUserProject(
+          @RequestParam int pid) {
         logger.info("删除项目，项目ID: {}", pid);
         userProjectService.deleteUserProject(pid);
         logger.info("项目删除成功，项目ID: {}", pid);
     }
 
     @PostMapping("/insert")
-    public userProject insertUserProject(@RequestBody userProject userProject) {
+    public userProject insertUserProject(
+ @RequestBody userProject userProject) {
         logger.info("插入项目，项目信息: {}", userProject);
         userProjectService.insertUserProject(userProject);
         logger.info("项目插入成功，项目信息: {}", userProject);
@@ -33,7 +35,8 @@ public class UserProjectController {
     }
 
     @PostMapping("/select")
-    public String selectUserProject(int pid) {
+    public String selectUserProject(
+       @RequestParam int pid) {
         logger.info("查询项目，项目ID: {}", pid);
         String result = userProjectService.selectUserProject(pid);
         logger.info("项目查询成功，项目ID: {}, 结果: {}", pid, result);
@@ -41,7 +44,8 @@ public class UserProjectController {
     }
 
     @PostMapping("/update")
-    public void updateUserProject(@RequestBody userProject userProject) {
+    public void updateUserProject(
+          @RequestBody userProject userProject) {
         logger.info("更新项目，项目信息: {}", userProject);
         userProjectService.updateUserProject(userProject);
         logger.info("项目更新成功，项目信息: {}", userProject);
@@ -56,10 +60,12 @@ public class UserProjectController {
     }
 
     @PostMapping("/searchByUid")
-    public List<userProject> searchByUid(@RequestParam int uid) {
+    public List<userProject> searchByUid(
+         @RequestParam int uid) {
         logger.info("查询用户项目，用户ID: {}", uid);
         List<userProject> result = userProjectService.searchByUid(uid);
         logger.info("查询用户项目成功，用户ID: {}, 结果: {}", uid, result);
         return result;
     }
 }
+   
