@@ -5,10 +5,7 @@ import com.coding24.mybatisdemo.service.PointsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/points")
@@ -54,7 +51,7 @@ public class PointsController {
         return points;
     }
 
-    @RequestMapping("/update")
+    @PostMapping("/update")
     public void updatePoints(
      @RequestBody Points points) {
         logger.info("更新地点: {}", points);
