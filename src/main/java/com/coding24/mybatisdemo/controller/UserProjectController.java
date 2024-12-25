@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 @RestController
@@ -35,10 +36,10 @@ public class UserProjectController {
     }
 
     @PostMapping("/select")
-    public String selectUserProject(
+    public userProject selectUserProject(
        @RequestParam int pid) {
         logger.info("查询项目，项目ID: {}", pid);
-        String result = userProjectService.selectUserProject(pid);
+        userProject result = userProjectService.selectUserProject(pid);
         logger.info("项目查询成功，项目ID: {}, 结果: {}", pid, result);
         return result;
     }
@@ -46,9 +47,30 @@ public class UserProjectController {
     @PostMapping("/update")
     public void updateUserProject(
           @RequestBody userProject userProject) {
-        logger.info("更新项目，项目信息: {}", userProject);
-        userProjectService.updateUserProject(userProject);
-        logger.info("项目更新成功，项目信息: {}", userProject);
+        logger.info("更新项目，前端发来信息: {}", userProject);
+        userProject result = userProjectService.selectUserProject(userProject.getPid());
+        if (result == null) {
+            logger.info("项目不存在");
+            return;
+        }else{
+            logger.info("项目存在，项目信息: {}", result);
+
+            if (userProject.getProjectName() != null) {
+                result.setProjectName(userProject.getProjectName());
+            }
+            if (userProject.getUid() != 0) {
+                result.setUid(userProject.getUid());
+            }
+            if (userProject.getPicture() != null){
+                result.setPicture(userProject.getPicture());
+            }
+            if (userProject.getCategory() != null){
+                result.setCategory(userProject.getCategory());
+            }
+        }
+
+        userProjectService.updateUserProject(result);
+        logger.info("项目更新成功，项目信息: {}", result);
     }
 
     @GetMapping("/searchAll")

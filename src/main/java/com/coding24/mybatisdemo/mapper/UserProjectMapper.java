@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface UserProjectMapper {
     @Select("select * from user_project where pid = #{pid}")
-    public String selectUserProject(int pid);
+    public userProject selectUserProject(int pid);
 
     @Delete("delete from user_project where pid = #{pid}")
     public void deleteUserProject(int pid);

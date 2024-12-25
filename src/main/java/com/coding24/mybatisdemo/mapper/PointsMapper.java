@@ -14,7 +14,7 @@ public interface PointsMapper {
     @Select("select * from points")
     public Points[] findAll();
 
-    @Update("update points set title = #{title},lng = #{lng},lat = #{lat},pid = #{pid},address = #{address},province = #{province},city = #{city},tags = #{tags} where position_id = #{position_id}")
+    @Update("update points set title = #{title},lng = #{lng},lat = #{lat},address = #{address},province = #{province},city = #{city},tags = #{tags} where position_id = #{position_id}")
     public void updatePoints(Points points);
 
     @Delete("delete from points where position_id = #{position_id}")

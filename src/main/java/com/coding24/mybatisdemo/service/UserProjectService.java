@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserProjectService {
     public void deleteUserProject(int pid);
     public void insertUserProject(userProject userProject);
-    public String selectUserProject(int pid);
+    public userProject selectUserProject(int pid);
     public void updateUserProject(userProject userProject);
     public List<userProject> searchAll();
     public List<userProject> searchByUid(int uid);

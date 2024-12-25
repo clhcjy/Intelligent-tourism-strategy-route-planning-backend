@@ -35,7 +35,7 @@ public class UserProjectServiceImpl implements UserProjectService {
      * @return
      */
     @Override
-    public String selectUserProject(int pid) {
+    public userProject selectUserProject(int pid) {
         return userProjectMapper.selectUserProject(pid);
     }
 
