@@ -9,4 +9,5 @@ public interface ResourcesService {
     void deleteById(Integer id);
     void update(resources resources);
     resources[] findByClassification(String classification);
+    resources[] findByTitle(String title);
 }

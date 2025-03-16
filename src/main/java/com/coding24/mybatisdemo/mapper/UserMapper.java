@@ -8,7 +8,7 @@ public interface UserMapper {
     public User findById(Integer id);
 
     @Select("select * from user")
-    public User findAll();
+    public User[] findAll();
 
     @Select("select * from user where username = #{username}")
     public User findByusername(String username);

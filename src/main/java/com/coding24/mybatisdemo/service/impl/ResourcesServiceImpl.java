@@ -59,4 +59,9 @@ public class ResourcesServiceImpl implements ResourcesService {
     public resources[] findByClassification(String classification) {
         return resourcesMapper.findByClassification(classification);
     }
+
+    @Override
+    public resources[] findByTitle(String title) {
+        return resourcesMapper.findByTitle(title);
+    }
 }

@@ -22,14 +22,14 @@ public class OpenApiConfig {
                         .version("1.0.0")
                         .contact(new Contact()
                                 .name("开发者姓名:陈烈烘")
-                                .url("http://192.168.1.47:8082/")
+                                .url("http://192.168.94.231:8082/")
                                 .email("1754598483@qq.com"))
                         .license(new License()
                                 .name("Apache 2.0")
                                 .url("https://www.apache.org/licenses/LICENSE-2.0.html")))
                 .servers(List.of(
                         new Server().url("http://localhost:8081").description("本地服务器"),
-                        new Server().url("http://192.168.1.47:8081").description("生产服务器")))
+                        new Server().url("http://192.168.94.231:8082").description("生产服务器")))
                 .externalDocs(new ExternalDocumentation()
                         .description("外部文档描述")
                         .url("https://example.com/docs"));

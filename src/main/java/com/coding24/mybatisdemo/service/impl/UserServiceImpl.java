@@ -47,4 +47,12 @@ public class UserServiceImpl implements UserService {
     public void delete(Integer id) {
         userMapper.delete(id);
     }
+
+    /**
+     * @return
+     */
+    @Override
+    public User[] findAll() {
+        return userMapper.findAll();
+    }
 }

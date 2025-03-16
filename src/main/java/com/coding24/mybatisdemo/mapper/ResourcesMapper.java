@@ -22,4 +22,7 @@ public interface ResourcesMapper {
 
     @Select("select * from resources where classification = #{classification}")
     resources[] findByClassification(String classification);
+
+    @Select("select * from resources where title like concat('%', #{title}, '%')")
+    resources[] findByTitle(String title);
 }

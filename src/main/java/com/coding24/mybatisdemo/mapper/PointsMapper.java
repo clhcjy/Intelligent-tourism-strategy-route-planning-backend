@@ -24,4 +24,5 @@ public interface PointsMapper {
     @Options(useGeneratedKeys = true, keyProperty = "position_id")
     public int insertPoints(Points points);
 
+
 }

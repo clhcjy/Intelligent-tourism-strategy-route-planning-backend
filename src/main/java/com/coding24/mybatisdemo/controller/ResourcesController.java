@@ -15,6 +15,11 @@ public class ResourcesController {
     @Autowired
     private ResourcesService resourcesService;
 
+    @PostMapping("/recommend")
+    public resources[] recommend(@RequestParam String title){
+        return resourcesService.findByTitle(title);
+    }
+
     @PostMapping("/insert")
     public void insert(
           @RequestBody resources resources) {
@@ -62,6 +67,15 @@ public class ResourcesController {
         logger.info("开始根据分类查找资源, 分类: {}", classification);
         resources[] resourcesList = resourcesService.findByClassification(classification);
         logger.info("资源查找成功, 数量: {}", resourcesList.length);
+        return resourcesList;
+    }
+
+    @PostMapping("/title")
+    public resources[] findByTitle(
+         @RequestParam String title) {
+        logger.info("开始根据标题查找资源, 标题: {}", title);
+        resources[] resourcesList = resourcesService.findByTitle(title);
+        logger.info("资源查找成功, 数量: {}", resourcesList);
         return resourcesList;
     }
 }

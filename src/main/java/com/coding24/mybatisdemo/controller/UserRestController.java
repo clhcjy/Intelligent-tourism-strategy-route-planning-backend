@@ -18,6 +18,14 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/findAllUser")
+    public User[] findAllUser() {
+        log.info("正在查找所有用户");
+        User[] users = userService.findAll();
+        log.info("找到的所有用户: {}", users);
+        return users;
+    }
+
     @GetMapping("/findByIdRest/{id}")
     public ResponseEntity<Map<String, String>> findById(
           @PathVariable("id") Integer id) {
