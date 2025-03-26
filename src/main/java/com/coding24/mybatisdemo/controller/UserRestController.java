@@ -2,8 +2,6 @@ package com.coding24.mybatisdemo.controller;
 
 import com.coding24.mybatisdemo.entity.User;
 import com.coding24.mybatisdemo.service.UserService;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.constraints.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +28,7 @@ public class UserRestController {
 
     @GetMapping("/findByIdRest/{id}")
     public ResponseEntity<Map<String, String>> findById(
-          @PathVariable("id") Integer id) {
+            @PathVariable("id") Integer id) {
         log.info("正在根据ID查找用户: {}", id);
         User user = userService.findById(id);
         log.info("找到的用户: {}", user);
@@ -42,12 +40,18 @@ public class UserRestController {
         return ResponseEntity.ok(result);
     }
 
-    // 登录接口
     @PostMapping("/login")
-    @ResponseBody
-    public String login(@RequestBody User user, HttpServletResponse response){
-        String result = userService.login(user, response);
-        return result;
+    public User login(@RequestBody User user) {
+        String username = user.getUsername();
+        String password = user.getPassword();
+        log.info("用户名为 {} 的用户尝试登录", username);
+        User authenticatedUser = userService.findByNameAndPassword(username, password);
+        if (authenticatedUser != null) {
+            log.info("用户认证成功: {}", authenticatedUser);
+        } else {
+            log.warn("用户名为 {} 的用户登录失败", username);
+        }
+        return authenticatedUser;
     }
 
     @PostMapping("/register")
