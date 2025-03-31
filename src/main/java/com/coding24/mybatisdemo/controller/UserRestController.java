@@ -1,5 +1,8 @@
 package com.coding24.mybatisdemo.controller;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.coding24.mybatisdemo.entity.User;
 import com.coding24.mybatisdemo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +31,7 @@ public class UserRestController {
 
     @GetMapping("/findByIdRest/{id}")
     public ResponseEntity<Map<String, String>> findById(
-          @PathVariable("id") Integer id) {
+            @PathVariable("id") Integer id) {
         log.info("正在根据ID查找用户: {}", id);
         User user = userService.findById(id);
         log.info("找到的用户: {}", user);
@@ -62,4 +65,3 @@ public class UserRestController {
         return "success";
     }
 }
-   

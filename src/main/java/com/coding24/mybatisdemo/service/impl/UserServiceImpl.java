@@ -13,6 +13,13 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
+    public User login(String name, String password) {
+        User user2 = userMapper.findByusername(name);
+
+        return user2;
+    }
+
+    @Override
     public User findById(Integer id) {
         return userMapper.findById(id);
     }
@@ -55,4 +62,5 @@ public class UserServiceImpl implements UserService {
     public User[] findAll() {
         return userMapper.findAll();
     }
+
 }

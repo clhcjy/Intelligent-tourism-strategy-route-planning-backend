@@ -11,4 +11,5 @@ public interface UserService {
     public void update(User user);
     public void delete(Integer id);
     public User[] findAll();
+    public User login(String name, String password);
 }
