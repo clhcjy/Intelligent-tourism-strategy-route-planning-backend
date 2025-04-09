@@ -3,9 +3,6 @@ package com.coding24.mybatisdemo.service.impl;
 import com.coding24.mybatisdemo.entity.User;
 import com.coding24.mybatisdemo.mapper.UserMapper;
 import com.coding24.mybatisdemo.service.UserService;
-import com.coding24.mybatisdemo.util.TokenUtil;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,25 +12,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    TokenUtil tokenUtil;
 
-    @Override
-    public String login(User user, HttpServletResponse response) {
-        User user2 = userMapper.findByusername(user.getUsername());
-        if (user2 == null) {
-            return "该用户不存在！";
-        }
-        if (!user2.getPassword().equals(user.getPassword())) {
-            return "密码错误！";
-        }
-        String token = tokenUtil.generateToken(user2);
-        Cookie cookie = new Cookie("token", token);
-//        设置cookie的作用域：为”/“时，以在webapp文件夹下的所有应用共享cookie
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        return "登录成功！";
-    }
 
     @Override
     public User login(String name, String password) {
