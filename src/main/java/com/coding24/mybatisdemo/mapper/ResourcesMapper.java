@@ -17,7 +17,7 @@ public interface ResourcesMapper {
     @Update("update resources set title = #{title}, content = #{content}, link = #{link}, classification = #{classification} where id = #{id}")
     void update(resources resources);
 
-    @Insert("insert into resources (title, content, link, classification) values (#{title}, #{content}, #{link}, #{classification})")
+    @Insert("insert into resources (title, content, link, classification,status) values (#{title}, #{content}, #{link}, #{classification},#{status})")
     void insert(resources resources);
 
     @Select("select * from resources where classification = #{classification}")
