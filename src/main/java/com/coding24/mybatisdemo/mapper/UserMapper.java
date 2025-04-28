@@ -19,7 +19,8 @@ public interface UserMapper {
     @Select("select * from user where username = #{username} and password = #{password}")
     public User findByusernameAndPassword(String username, String password);
 
-    @Insert("insert into user(username, password,avatarUrl)"+" values(#{username}, #{password},#{avatarUrl})")
+    @Insert("insert into user(username, password,avatarUrl,createTime)"+" values(#{username}, #{password},#{avatarUrl},#{createTime})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     public void save(User user);
 
     @Update("update user set username = #{username}, password = #{password} where id = #{id}")
